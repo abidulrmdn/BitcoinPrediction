@@ -29,4 +29,4 @@ y_pred = regressor.predict(X_test)
 
 #import visualizeData as vd
 #vd.plotData(X_train, X_test, y_train, y_test, regressor.predict(X_train));
-print(y_pred[-1])
+print(int(y_pred[-1] > dataset.iloc[-2,-1]))
