@@ -8,16 +8,21 @@ Created on Tue Jun  5 11:49:38 2018
 
 #Import 3 datasets (keywords, tweets, btcoinValue)
 def generateMainDataSet():
+    
+    import sys
+    tweetsfilePath = './dataplace/tweets.csv'
+    if __name__ == "__main__":
+        tweetsfilePath = sys.argv[1]
     import pandas as pd
-    keywords = pd.read_csv('dataplace/dictionary.csv').values
-    btcData = pd.read_csv('dataplace/btcvalues.csv').values
-    tweetsData = pd.read_csv('dataplace/tweets.csv').values
+    keywords = pd.read_csv('./dataplace/dictionary.csv').values
+    btcData = pd.read_csv('./dataplace/btcvalues.csv').values
+    tweetsData = pd.read_csv(tweetsfilePath).values
     #dataset = pd.read_csv('dataplace/Data.csv')
     keywordsFreq = {}
     btcValues = {}
     
     #initialize Keywords freq array and put in file
-    f = open('dataplace/generatedData.csv','w')
+    f = open('./dataplace/generatedData.csv','w')
     f.truncate()
     index = 0
     for word in keywords:
@@ -27,7 +32,7 @@ def generateMainDataSet():
         index +=1
     f.write('BTCValues\n')
     f.close()
-    test = pd.read_csv('dataplace/generatedData.csv')
+    test = pd.read_csv('./dataplace/generatedData.csv')
     
     #make the btcoins values as dictionaries
     index = 0
@@ -37,7 +42,7 @@ def generateMainDataSet():
     
     
     #pick keywords and flush them in file
-    f = open('dataplace/generatedData.csv','a')
+    f = open('./dataplace/generatedData.csv','a')
     tmpKeywordsFreq = keywordsFreq.copy()
     currentData = tweetsData[0][0]
     #todo get dictionary key for current tweet
@@ -54,9 +59,14 @@ def generateMainDataSet():
         #count frequencies
         for word in tmpKeywordsFreq:
             tmpKeywordsFreq[word] += tweet[1].count(word)
-        
+    #flush last raw for today to file
+    for keyword, tmpKeywordFreq in tmpKeywordsFreq.items():
+        wordSep = str(tmpKeywordFreq)+','
+        f.write(wordSep)
+    btcval = '0\n' #no predicted value
+    f.write(btcval)
     f.close()
-    generatedData = pd.read_csv('dataplace/generatedData.csv')
+    generatedData = pd.read_csv('./dataplace/generatedData.csv')
     return generatedData
     
     

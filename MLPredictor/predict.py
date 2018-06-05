@@ -27,5 +27,6 @@ regressor.fit(X_train, y_train)
 # Predicting the Test set results
 y_pred = regressor.predict(X_test)
 
-import visualizeData as vd
-vd.plotData(X_train, X_test, y_train, y_test, regressor.predict(X_train));
+#import visualizeData as vd
+#vd.plotData(X_train, X_test, y_train, y_test, regressor.predict(X_train));
+print(y_pred[-1])
