@@ -24,17 +24,27 @@ keywords = pd.read_csv('dataplace/dictionary.csv').values
 btcvalues = pd.read_csv('dataplace/btcvalues.csv').values
 tweets = pd.read_csv('dataplace/tweets.csv').values
 dataset = pd.read_csv('dataplace/Data.csv')
+keywordsFreq = {}
 #truncate dataset file
 f = open('dataplace/test.csv','w')
 f.truncate() #Give your csv text here.
-f.close()
-
 #open dataset for appending
-f = open('dataplace/test.csv','a')
-f.write('hi, there\n') #Give your csv text here.
-f.write('no, way\n') #Give your csv text here.
+#f = open('dataplace/test.csv','w')
+index = 0
+for word in keywords:
+    keywordsFreq[word[0]] = 0;
+    wordSep = word[0]+','
+    f.write(wordSep)
+    index +=1
+    print(wordSep)
+f.write('BTCValues\n')
 ## Python will convert \n to os.linesep
 f.close()
 test = pd.read_csv('dataplace/test.csv')
-for word in keywords:
-    print(word)
+
+
+
+
+#keywordsFreq['asd'] = 10;
+#if 'asdas' in keywordsFreq:
+#    print('yes')
