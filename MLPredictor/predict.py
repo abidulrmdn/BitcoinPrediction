@@ -8,12 +8,10 @@ Created on Tue Jun  5 10:26:45 2018
 
 # Importing the libraries
 #import numpy as np
-import matplotlib.pyplot as plt
 import preprocessData as ppd
 
 # Importing the dataset
 dataset = ppd.generateMainDataSet()
-#dataset = pd.read_csv('Data.csv')
 X = dataset.iloc[:, :1].values
 y = dataset.iloc[:, -1].values
 
@@ -29,18 +27,5 @@ regressor.fit(X_train, y_train)
 # Predicting the Test set results
 y_pred = regressor.predict(X_test)
 
-# Visualising the Training set results
-plt.scatter(X_train, y_train, color = 'red')
-plt.plot(X_train, regressor.predict(X_train), color = 'blue')
-plt.title('BTCVal vs KFreq (Training set)')
-plt.xlabel('Frequency of Kwords')
-plt.ylabel('BTCVal')
-plt.show()
-
-# Visualising the Test set results
-plt.scatter(X_test, y_test, color = 'red')
-plt.plot(X_train, regressor.predict(X_train), color = 'blue')
-plt.title('BTCVal vs KFreq (Test set)')
-plt.xlabel('Frequency of Kwords')
-plt.ylabel('BTCVal')
-plt.show()
+import visualizeData as vd
+vd.plotData(X_train, X_test, y_train, y_test, regressor.predict(X_train));
