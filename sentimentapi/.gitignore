@@ -1,0 +1,4 @@
+src/public/*.csv
+src/public/__pycache__/
+src/vendor/
+.idea/

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.17",
+    "mysql": "^2.15.0",
+    "puppeteer": "^1.4.0"
+  }
+}
